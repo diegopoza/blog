@@ -23,7 +23,7 @@ tags:
 
 ## Spring Boot Overview
 
-Spring Boot is another technology from Pivotal, known for giving us the powerful Spring framework, which features the full power of Spring in an easily accessible framework. With Spring Boot, they offer an easy way to set up a project and get it running in no-time. They took the approach of convention over configuration, meaning that you don't need to spend a lot of time struggling with spring configuration. Together with having an embedded Tomcat, Jetty or undertow, a large part of possible deployment issues have been taken away, causing most applications to 'just run'. 
+Spring Boot is another technology from Pivotal, known for giving us the powerful Spring framework, which features the full power of Spring in an easily accessible package. With Spring Boot, they offer an easy way to set up a project and get it running in no-time. They took the approach of convention over configuration, meaning that you will spend a lot less time struggling with the setup. Together with having an embedded Tomcat, Jetty or undertow, a large part of possible deployment issues have been taken away, causing most applications to 'just run'.
 
 Above all, Spring Boot is meant to make it *easy* to get a project running, which starts all the way at the beginning, by providing multiple ways to set up a Spring Boot project. Let's jump right into setting up our project and getting our 'Hello World'!
 
@@ -46,13 +46,13 @@ For now, all we really need is the *Web* dependency, which gives us a Tomcat ser
 
 ## Our first application
 
-Once we have downloaded our zip file, the project can be imported in your favourite editor. At this point, some code is already generated for us. Let's take a look at some of the generated code first to understand what Spring Boot has done for us.
+Once we have downloaded our zip file, the project can be imported in our favourite editor. At this point, some code is already generated for us. Let's take a look at some of the generated code first to understand what Spring Boot has done for us.
 
 As this is a maven project, we will examine the _pom.xml_ file first. The top of the file is pretty much a standard pom file. It identifies your project by the `groupId` and the `artifactId`. Your project also has a name and a description. Next, there is a reference to a parent. This is the parent of all Spring Boot starters, and contains further dependencies needed for the base of Spring Boot.
 
 This is followed by the properties, which tell you something more about your project. Because we have chosen java 8, the properties also reflect this in the `java.version` tag.
 
-now we get to the interesting part:
+Here comes the interesting part:
 
      <dependencies>
      		<dependency>
@@ -108,7 +108,7 @@ For starters, we will just create a mapping against the root (`/`) of our web-se
      	}
      }
 
-Now when we run our application, again by using `mvn spring-boot:run`, we can navigate to `localhost:8080`, and we are presented with a "Hello World". (alternatively to using your browser to test the application, you could use a tool like `curl` or `postman` to send requests to the webserver. Later, when dealing with JWTs, that might actually be the easiest way)
+When we run our application, again by using `mvn spring-boot:run`, we can navigate to `localhost:8080`, and  are presented with a "Hello World". (alternatively to using your browser to test the application, you could use a tool like `curl` or `postman` to send requests to the webserver. Later, when dealing with JWTs, that might actually be the easiest way)
 
 
 Now we will extend this example a little bit. We will create a new class `UserController` which will be another `RestController`. We will return some (static) JSON data as an example at route `/users` to begin with.
@@ -150,7 +150,7 @@ We have some pretty similar code to our original 'Hello World', but now we are r
 
 ## Securing our application with JWT
 
-Right now, our application is exposed to everyone. Anyone can query our webserver and request a list of all the users. Preferably, this is only exposed to people whom are logged in. For this purpose, we will secure our application with JSON Web Tokens.
+At this point, our application is exposed to everyone. Anyone can query our webserver and request a list of all the users. Preferably, this is only exposed to people whom are logged in. For this purpose, we will secure our application with JSON Web Tokens.
 
 JWT is a relatively new technology, defined in [rfc-7519](https://tools.ietf.org/html/rfc7519). It defines a compact, URL-safe way of sharing data between parties using a JSON object. The information is signed with either a secret (using an HMAC) or a public/private key-pair using RSA. If you want to learn more about JWTs, [we've got you covered!](https://auth0.com/learn/json-web-tokens/)
 
