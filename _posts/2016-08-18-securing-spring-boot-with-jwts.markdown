@@ -336,7 +336,8 @@ Being well documented is important, and Pivotal has great documentation on how t
 
 One of the advantages of Spring Boot lies with microservices. Microservices are a successor of the SOA, service oriented architecture. A microservice is responsible for managing a single data domain and the functions thereof. Spring Boot is actually a great example of this principle, as it consists of many different modules that we can use. Recall that during the setup of our application, we could choose between a whole range of these dependencies, dependencies which would be added to our project by including a simple reference to them in our pom.xml file. Each of these dependencies can be thought of as a microservice. Each project would function as a self-containing service that we can then use in other projects. 
 
-In our example, we have created a REST-service that is self-contained. We could focus ourselves on writing just the REST-api that deals with logging in and retrieving a list of users. We could then create another Spring Boot project for another part of our application (say, for example, a JSP application or desktop client), if we would be so inclined to do. These Spring Boot applications could then communicate with each other via HTTP, but would be largely independent of each other. 
+In our example, we have created a REST-service that is self-contained. We could focus ourselves on writing just the REST-api that deals with logging in and retrieving a list of users. We could then create another Spring Boot project for another part of our application (say, for example, a JSP application or desktop client), if we would be so inclined to do. These Spring Boot applications could then communicate with each other via HTTP, but would be largely independent of each other. This all makes Spring Boot a popular choice in modern architectures, and one worth checking out!
+
 
 ## Conclusion
 
