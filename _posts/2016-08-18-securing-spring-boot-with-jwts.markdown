@@ -32,15 +32,15 @@ If you can't wait to see the result, feel free to check out the full code on thi
 
 ## Setting up the project
 ### Getting an application
-There are various ways to get started with a Spring Boot project. They have provided a [quick start](http://start.spring.io/) and a CLI-tool. Apart from using the quick start or the Spring Boot CLI, you could also set up a project with Spring Boot manually using either Maven or Gradle and adding the necessary dependencies yourself. In this post we will set up a project using the provided quick start, which can be found at [start.spring.io](http://start.spring.io/).
+There are various ways to get started with a Spring Boot project. They have provided a [quick start](http://start.spring.io/) and a CLI-tool. Apart from using the quick start or the Spring Boot CLI, we could also set up a project with Spring Boot manually using either Maven or Gradle and adding the necessary dependencies ourselves. In this post we will set up a project using the provided quick start, which can be found at [start.spring.io](http://start.spring.io/).
 
 When we head over to the quick start webpage, we are presented with a few options on the main page. We will generate a *maven project* with the latest version of Spring Boot (1.4.0 at the time of writing). With the Project Metadata we can set up the standard properties of a maven artifact, but we can just leave it at the default for now.
 
 Next, we can Search for dependencies. Searching for dependencies is a handy feature once you have used Spring Boot several times and are aware of the available dependencies. Because this is our first project however, we can click on the link at the bottom that says *switch to full version*. After doing this, we have a webpage with checkboxes for all the available dependencies. Because we want to create a web-project, we can tick that checkbox under the *web* heading.
 
-There are a lot of dependencies available which work with Spring Boot out-of-the-box. Many of the common technologies are provided here, such as dependencies for HATEOAS, JPA, MongoDB, Thymeleaf and many many more. If you are going to use one of the common Java technologies, chances are that it can easily be included in your Spring Boot project.
+There are a lot of dependencies available which work with Spring Boot out-of-the-box. Many of the common technologies are provided here, such as dependencies for HATEOAS, JPA, MongoDB, Thymeleaf and many many more. If we are going to use one of the common Java technologies, chances are that it can easily be included in our Spring Boot project.
 
-For now, all we really need is the *Web* dependency, which gives us several things including a Tomcat server and the Spring MVC framework. Once you click on the *Generate Project* button, a download will start containing a starting project for your selected setup. Setting up a Spring Boot project really is just a matter of minutes!
+For now, all we really need is the *Web* dependency, which gives us several things including a Tomcat server and the Spring MVC framework. Once we click on the *Generate Project* button, a download will start containing a starting project for our selected setup. Setting up a Spring Boot project really is just a matter of minutes!
 
 
 {% include tweet_quote.html quote_text="Setting up a Spring Boot project is a matter of minutes!" %}
@@ -51,7 +51,7 @@ Once we have downloaded our zip file, the project can be imported in our favouri
 
 As this is a maven project, we will examine the `pom.xml` file first. The top of the file is pretty much a standard pom file. It identifies our project by the `groupId` and the `artifactId`. Our project also has a name and a description. Next, there is a reference to a parent, this is the parent of all Spring Boot starters, and contains further dependencies needed for the base of Spring Boot.
 
-This is followed by the properties, which tell you something more about the project. Because we have chosen java 8, the properties also reflect this in the `java.version` tag.
+This is followed by the properties, which tells us something more about the project. Because we have chosen java 8, the properties also reflect this in the `java.version` tag.
 
 Here comes the interesting part:
 
@@ -77,9 +77,9 @@ Here comes the interesting part:
      		</plugins>
      	</build>
 
-The dependencies presented here are the ones that where selected during the setup. Because we only selected the Web dependency, we will see both Web and Test (_Test_ is provided by default, for unit testing our application). Though it might look like there are not a lot of dependencies being pulled in, that's not quite the case. The `spring-boot-starter-...` dependencies that you enter here actually fetch other dependencies they need. Because this is invisible to us, the pom.xml file looks quite clean, and all the management of those dependencies is taken care of for us as well.
+The dependencies presented here are the ones that where selected during the setup. Because we only selected the Web dependency, we will see both Web and Test (_Test_ is provided by default, for unit testing our application). Though it might look like there are not a lot of dependencies being pulled in, that's not quite the case. The `spring-boot-starter-...` dependencies that we enter here actually fetch other dependencies they need. Because this is invisible to us, the pom.xml file looks quite clean, and all the management of those dependencies is taken care of for us as well.
 
-Next, there is one plugin, the `spring-boot-maven-plugin`. This will let us build and deploy the entire application with one simple maven command:`mvn spring-boot:run`. If we try to run this now, there won't be anything interesting yet. After running that command, we can go to `localhost:8080`, though all we will see is a "Whitelabel Error Page". But, if all went well, the compilation worked without any problems and your server is up and running. Time to start doing something interesting with it!
+Next, there is one plugin, the `spring-boot-maven-plugin`. This will let us build and deploy the entire application with one simple maven command:`mvn spring-boot:run`. If we try to run this now, there won't be anything interesting yet. After running that command, we can go to `localhost:8080`, though all we will see is a "Whitelabel Error Page". But, if all went well, the compilation worked without any problems and our server is up and running. Time to start doing something interesting with it!
 
 ## Creating a web application
 
@@ -162,7 +162,7 @@ The first step is to secure some routes of our application. For this demo we wil
      			<version>0.6.0</version>
      		</dependency>
      		
-Because of Spring Boot, we don't need to worry about any other dependencies, they will be taken care of for us. The structure of your application is important here, as Spring needs to be aware of the classes in our project, we can keep the class containing our `main` method at the root. The structure should look like this (don't worry about the classes we did not discuss yet, we'll get to them soon enough). We could deviate from this structure, but then we might need to provide Spring Boot with a way to recognize which classes it should take into account, by using the `@ComponentScan` annotation. 
+Because of Spring Boot, we don't need to worry about any other dependencies, they will be taken care of for us. The structure of our application is important here, as Spring needs to be aware of the classes in our project, we can keep the class containing our `main` method at the root. The structure should look like this (don't worry about the classes we did not discuss yet, we'll get to them soon enough). We could deviate from this structure, but then we might need to provide Spring Boot with a way to recognize which classes it should take into account, by using the `@ComponentScan` annotation. 
 
       - src
          - demo
@@ -306,7 +306,7 @@ One extra class that we need is the `AccountCredentials` class. This will be use
 
 Our application is now secured and supports authentication with a JWT, we can go ahead and run our application again. When our server is up-and-running we can test this out by querying `localhost:8080/users`, and we should get a message saying "Access Denied". To authenticate ourselves, we will send a POST-request to `/login` with our user's data in the body: `{"username":"admin","password":"password"}`. 
 
-In the response of this request, we will get a token as part of the _Authorization_ header, prefixed by "Bearer". We can copy this token to issue the next GET request to our `/users` path. To do this, alter the request to `/users` to include a header called `Authorization`, paste the JWT in this field and launch the request! If all went well, you should once again be presented with the users. 
+In the response of this request, we will get a token as part of the _Authorization_ header, prefixed by "Bearer". We can copy this token to issue the next GET request to our `/users` path. To do this, alter the request to `/users` to include a header called `Authorization`, paste the JWT in this field and launch the request! If all went well, we should once again be presented with the users. 
 
 
 ## Advantages of using Spring Boot
