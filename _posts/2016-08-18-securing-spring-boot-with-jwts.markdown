@@ -17,9 +17,11 @@ tags:
 - Java
 ---
 
------
-**TL;DR** Spring Boot is a technology making it easy to create Java and Groovy applications utilizing the full power of spring, with minimal setup. It allows you to create applications that 'just run' without the hassle, and even the project setup becomes a breeze. Keep on reading to find out how to set up a fully-functioning project and secure it with JWT in almost no time!
------
+---
+
+**TL;DR:** Spring Boot is a technology making it easy to create Java and Groovy applications utilizing the full power of spring, with minimal setup. It allows you to create applications that 'just run' without the hassle, and even the project setup becomes a breeze. Keep on reading to find out how to set up a fully-functioning project and secure it with JWT in almost no time!
+
+---
 
 ## Spring Boot Overview
 
@@ -37,6 +39,8 @@ There are various ways to get started with a Spring Boot project. They have prov
 When we head over to the quick start webpage, we are presented with a few options on the main page. We will generate a *maven project* with the latest version of Spring Boot (1.4.0 at the time of writing). With the Project Metadata we can set up the standard properties of a maven artifact, but we can just leave it at the default for now.
 
 Next, we can Search for dependencies. Searching for dependencies is a handy feature once you have used Spring Boot several times and are aware of the available dependencies. Because this is our first project however, we can click on the link at the bottom that says *switch to full version*. After doing this, we have a webpage with checkboxes for all the available dependencies. Because we want to create a web-project, we can tick that checkbox under the *web* heading.
+
+![Spring-boot start page](http://it-ca.net/auth0_images/springboot-start.png)
 
 There are a lot of dependencies available which work with Spring Boot out-of-the-box. Many of the common technologies are provided here, such as dependencies for HATEOAS, JPA, MongoDB, Thymeleaf and many many more. If we are going to use one of the common Java technologies, chances are that it can easily be included in our Spring Boot project.
 
@@ -306,7 +310,11 @@ One extra class that we need is the `AccountCredentials` class. This will be use
 
 Our application is now secured and supports authentication with a JWT, we can go ahead and run our application again. When our server is up-and-running we can test this out by querying `localhost:8080/users`, and we should get a message saying "Access Denied". To authenticate ourselves, we will send a POST-request to `/login` with our user's data in the body: `{"username":"admin","password":"password"}`. 
 
+![POST with username-password](http://it-ca.net/auth0_images/postman.png)
+
 In the response of this request, we will get a token as part of the _Authorization_ header, prefixed by "Bearer". We can copy this token to issue the next GET request to our `/users` path. To do this, alter the request to `/users` to include a header called `Authorization`, paste the JWT in this field and launch the request! If all went well, we should once again be presented with the users. 
+
+![JWT in Header request](http://it-ca.net/auth0_images/getusers.png)
 
 
 ## Advantages of using Spring Boot
